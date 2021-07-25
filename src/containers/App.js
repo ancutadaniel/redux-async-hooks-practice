@@ -11,10 +11,7 @@ function App() {
   const [count, setCount] = useState(0);
   const ref = useRef();
 
-  const logger = useSelector((state) => state);
   const dispatch = useDispatch();
-
-  console.log('logger', logger);
 
   const search = useSelector((state) => state.searchField?.search);
   const robots = useSelector((state) => state.fetchRobotsSlice.robots);
