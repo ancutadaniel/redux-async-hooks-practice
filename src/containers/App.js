@@ -15,10 +15,13 @@ function App() {
 
   const search = useSelector((state) => state.searchField?.search);
   const robots = useSelector((state) => state.fetchRobotsSlice.robots);
+  const robotsStatus = useSelector((state) => state.fetchRobotsSlice.status);
 
   useEffect(() => {
-    dispatch(fetchRobotsAsync());
-  }, []);
+    if (robotsStatus === 'idle') {
+      dispatch(fetchRobotsAsync());
+    }
+  }, [robotsStatus, dispatch]);
 
   const filteredRobots = robots?.filter((robot) => {
     return robot.name.toLowerCase().includes(search.toLowerCase());
